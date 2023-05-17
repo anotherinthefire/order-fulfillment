@@ -92,21 +92,22 @@
             padding: 10px;
         }
 
-        .more-options button{
+        .more-options button {
             border: transparent;
         }
 
-        .more-options .status{
+        .more-options .status {
             background-color: #A5F297;
             padding: 5px;
             border-radius: 5px;
         }
 
-        .more-options .view{
+        .more-options .view {
             background-color: #5876CE;
             border-radius: 5px;
             padding: 5px;
         }
+
         .more-options.show {
             display: block;
         }
