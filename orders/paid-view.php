@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXGG | Pending</title>
+    <title>AXGG | Paid</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
     <style>
         * {
@@ -319,6 +319,7 @@
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
         }
+        
     </style>
 </head>
 
@@ -327,7 +328,7 @@
     <section class="home-section">
         <div class="home-content">
             <i class='bx bx-menu'></i>
-            <span class="text">Pending</span>
+            <span class="text">Paid Order</span>
         </div>
 
 
@@ -510,17 +511,15 @@
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
                 </form>
 
-                <form action="actions/to-followup.php" method="POST" style="display: inline;">
+                <form action="actions/to-pickup.php" method="POST" style="display: inline;">
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                    <button style="margin-left: 65%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Follow Up</button>
+                    <button style="margin-left: 70%; margin-bottom: 50px;" type="submit" name="pickup" class="status">ready for pickup</button>
                 </form>
 
-                <button onclick="submitCancelForm()" type="button" name="cancel" class="status">Cancel</button>
-
-                
+                <a href="actions/print-orders.php?id=<?php echo $orderId ?>" style="color:#000"><button><i class="bx bx-printer" style="font-size: 24px;"></i></button></a>
 
 
-                <a href="pending.php" style="color:black;">
+                <a href="paid.php" style="color:black;">
                     <button>Back</button>
                 </a>
 
@@ -539,10 +538,10 @@
     </section>
     <script src="../assets/js/nav.js"></script>
     <script>
-                    function submitCancelForm() {
-                        document.getElementById("cancelForm").submit();
-                    }
-                </script>
+  function printPage() {
+    window.print();
+  }
+</script>
 </body>
 
 </html>

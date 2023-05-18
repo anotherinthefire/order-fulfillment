@@ -256,7 +256,7 @@
             <input type="hidden" name="orderId" value="' . $orderId . '">
             <button type="submit" name="ship" class="status">Shipped</button>
           </form>
-          <a href="pending-view.php?id=' . $orderId . '"><button class="view">View</button></a>
+          <a href="pickup-view.php?id=' . $orderId . '"><button class="view">View</button></a>
         </div>
       </td>
     </tr>';

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXGG | Pending</title>
+    <title>AXGG | Shipped</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
     <style>
         * {
@@ -319,6 +319,165 @@
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
         }
+
+
+
+
+
+
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 1;
+            width: 25%;
+            padding: 10px;
+        }
+
+        /* Style the images inside the grid */
+        .column img {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .column img:hover {
+            opacity: 1;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* The expanding image container */
+        .container {
+            position: relative;
+            display: none;
+        }
+
+        /* Expanding image text */
+        #imgtext {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Closable button inside the expanded image */
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border: 1px solid rgb(159, 159, 160);
+            border-radius: 20px;
+            padding: 2rem 0.7rem 0.7rem 0.7rem;
+            text-align: center;
+            font-size: 1.125rem;
+            max-width: 320px;
+            margin: 20% auto;
+            margin-top: 25vh;
+            margin-bottom: auto;
+        }
+
+
+        .form-title {
+            color: #000000;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .form-paragraph {
+            margin-top: 10px;
+            font-size: 0.9375rem;
+            color: rgb(105, 105, 105);
+        }
+
+        .drop-container {
+            background-color: #fff;
+            position: relative;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin-top: 2.1875rem;
+            border-radius: 10px;
+            border: 2px dashed rgb(171, 202, 255);
+            color: #444;
+            cursor: pointer;
+            transition: background .2s ease-in-out, border .2s ease-in-out;
+        }
+
+        .drop-container:hover {
+            background: rgba(0, 140, 255, 0.164);
+            border-color: rgba(17, 17, 17, 0.616);
+        }
+
+        .drop-container:hover .drop-title {
+            color: #222;
+        }
+
+        .drop-title {
+            color: #444;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            transition: color .2s ease-in-out;
+        }
+
+        #file-input {
+            width: 350px;
+            max-width: 100%;
+            color: #444;
+            padding: 2px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid rgba(8, 8, 8, 0.288);
+        }
+
+        #file-input::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #084cdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        #file-input::file-selector-button:hover {
+            background: #0d45a5;
+        }
     </style>
 </head>
 
@@ -327,7 +486,7 @@
     <section class="home-section">
         <div class="home-content">
             <i class='bx bx-menu'></i>
-            <span class="text">Pending</span>
+            <span class="text">Shipped order</span>
         </div>
 
 
@@ -499,30 +658,166 @@
                             </table>
 
                 </article>
-                <aside style="margin-left:5%; margin-right: 5%; padding-bottom:5%; text-align: center;">
+                <aside style="margin-left:5%; margin-right: 5%; padding-bottom:5%; text-align: center; ">
                     <h1><span>Customer Notes</span></h1>
-                    <div>
+                    <div style="margin-bottom: 50px;">
                         <p><?php echo $orderData['note'] ?></p>
+                    </div>
+
+                    <div class="row" style="text-align:center">
+                        <h1><span>Proof</span></h1>
+                        <?php
+                        include('../config.php');
+
+                        $proofQuery = "SELECT * FROM proof WHERE ord_id = $orderId";
+                        $proofResult = mysqli_query($conn, $proofQuery);
+
+                        if (mysqli_num_rows($proofResult) > 0) {
+                            echo '<div class="row">';
+
+                            while ($proofRow = mysqli_fetch_assoc($proofResult)) {
+                                $paymentImg = $proofRow['payment_img'];
+                                $pickupImg = $proofRow['pickup_img'];
+                                $deliveredImg = $proofRow['delivered_img'];
+                                $remarksImg = $proofRow['remarks_img'];
+
+                                echo '
+                                <div class="column">
+                                <img src="../../proof/' . $paymentImg . '" alt="Payment: ' . $proofRow['payment_date'] . '" style="width:100%" onclick="myFunction(this);">
+                                <p>payment</p>
+                                </div>
+                                <div class="column">
+                                <img src="../../proof/' . $pickupImg . '" alt="Pickup: ' . $proofRow['pickup_date'] . '" style="width:100%" onclick="myFunction(this);">
+                                <p>pickup</p>
+                                </div>
+                                <div class="column">
+                                <img src="../../proof/' . $deliveredImg . '" alt="Delivered: ' . $proofRow['delivered_date'] . '" style="width:100%" onclick="myFunction(this);">
+                                <p>delivered</p>
+                                </div>
+                                <div class="column">
+                                <img src="../../proof/' . $remarksImg . '" alt="Remarks: ' . $proofRow['remarks_date'] . '" style="width:100%" onclick="myFunction(this);">
+                                <p>remarks</p>
+                                </div>
+                                ';
+                            }
+
+                            echo '</div>';
+                        } else {
+                            echo '<p>No proofs yet</p>';
+                        }
+                        ?>
+                    </div>
+
+                    <div class="container">
+                        <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:black;">&times;</span>
+                        <img id="expandedImg" style="width:100%">
+                        <div id="imgtext" style="color:black;"></div>
                     </div>
                 </aside>
 
-                <form id="cancelForm" action="actions/to-cancelled.php" method="POST">
+                <form action="actions/to-completed.php" method="POST" style="display: inline;">
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
+                    <button style="margin-left: 65%; margin-bottom: 50px;" type="submit" name="completed" class="status">Completed</button>
                 </form>
 
-                <form action="actions/to-followup.php" method="POST" style="display: inline;">
-                    <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                    <button style="margin-left: 65%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Follow Up</button>
-                </form>
+                <button onclick="openModal()">Proof</button>
 
-                <button onclick="submitCancelForm()" type="button" name="cancel" class="status">Cancel</button>
-
-                
-
-
-                <a href="pending.php" style="color:black;">
+                <a href="shipped.php" style="color:black;">
                     <button>Back</button>
                 </a>
+
+                <?php
+                include('../config.php');
+
+                function insertPaymentImage($orderId, $imageFile)
+                {
+                    global $conn;
+                    $timestamp = date('Y-m-d H:i:s');
+
+                    $filename = uniqid();
+                    $fileExtension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+                    $filename .= '.' . $fileExtension;
+
+                    // Specify the destination folder to save the image
+                    $destination = '../../proof/' . $filename;
+
+                    // Move the uploaded file to the destination folder
+                    if (move_uploaded_file($imageFile, $destination)) {
+                        // Check if the order ID already exists in the proof table
+                        $existingQuery = "SELECT * FROM proof WHERE ord_id = $orderId";
+                        $existingResult = mysqli_query($conn, $existingQuery);
+
+                        if (mysqli_num_rows($existingResult) > 0) {
+                            // Update the existing row with the new image filename and timestamp
+                            $updateSql = "UPDATE proof SET delivered_img = '$filename', delivered_date = '$timestamp' WHERE ord_id = $orderId";
+                            $updateResult = mysqli_query($conn, $updateSql);
+
+                            if ($updateResult) {
+                                //nagana
+                                return true;
+                            } else {
+                                //hindi
+                                return false;
+                            }
+                        } else {
+                            // Insert a new row with the image filename and timestamp
+                            $insertSql = "INSERT INTO proof (ord_id, delivered_img, delivered_date) VALUES ($orderId, '$filename', '$timestamp')";
+                            $insertResult = mysqli_query($conn, $insertSql);
+
+                            if ($insertResult) {
+                                // Insertion successful
+                                return true;
+                            } else {
+                                // Insertion failed
+                                return false;
+                            }
+                        }
+                    } else {
+                        // File move failed
+                        return false;
+                    }
+                }
+
+                // Handle the form submission
+                if (isset($_FILES['file']) && isset($_POST['orderId'])) {
+                    $orderId = $_POST['orderId'];
+                    $imageFile = $_FILES['file']['tmp_name'];
+
+                    $allowedExtensions = ['jpg', 'jpeg', 'png'];
+                    $fileExtension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+                    $samepage = "http://localhost/overallsia/order-fulfillment/orders/shipped-view.php?id=" . $orderId;
+                    if (in_array($fileExtension, $allowedExtensions)) {
+                        if (insertPaymentImage($orderId, $imageFile)) {
+                            echo '<script>alert("Proof of delivery was uploaded successfully."); window.location.href = "' . $samepage . '";</script>';
+                        } else {
+                            echo '<script>alert("Failed to upload proof of delivery.");</script>';
+                        }
+                    } else {
+                        echo '<script>alert("Only JPG, JPEG, and PNG files are allowed.");</script>';
+                    }
+                }
+                ?>
+
+                <div class="modal" id="myModal">
+                    <div class="modal-content">
+                        <form class="form" method="POST" enctype="multipart/form-data">
+                            <span class="form-title">Upload proof</span>
+                            <p class="form-paragraph">
+                                File should be an image (JPG, JPEG, PNG)
+                            </p>
+                            <label for="file-input" class="drop-container">
+                                <span class="drop-title">Drop files here</span>
+                                or
+                                <input type="file" accept=".jpg, .jpeg, .png" required="" id="file-input" name="file">
+                            </label>
+                            <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
+                            <button type="submit" class="upload-button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
 
         <?php
             } else {
@@ -539,10 +834,30 @@
     </section>
     <script src="../assets/js/nav.js"></script>
     <script>
-                    function submitCancelForm() {
-                        document.getElementById("cancelForm").submit();
-                    }
-                </script>
+        function submitCancelForm() {
+            document.getElementById("cancelForm").submit();
+        }
+
+        function myFunction(imgs) {
+            var expandImg = document.getElementById("expandedImg");
+            var imgText = document.getElementById("imgtext");
+            expandImg.src = imgs.src;
+            imgText.innerHTML = imgs.alt;
+            expandImg.parentElement.style.display = "block";
+        }
+
+        function openModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 </body>
 
 </html>

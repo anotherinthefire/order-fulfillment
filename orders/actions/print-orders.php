@@ -5,8 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXGG | Pending</title>
+    <title>AXGG | Paid</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- latest bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <!-- font-awesome cdn -->
+  <script src="https://kit.fontawesome.com/3481525a72.js" crossorigin="anonymous"></script>
+
+  <!-- jquery datatable css cdn -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <style>
         * {
             border: 0;
@@ -319,22 +330,25 @@
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
         }
+
+        
+        @media print {
+        .no-print {
+            display: none;
+        }
+    }
+        
     </style>
 </head>
 
 <body>
-    <?php include('../includes/sidenav.php') ?>
     <section class="home-section">
         <div class="home-content">
-            <i class='bx bx-menu'></i>
-            <span class="text">Pending</span>
         </div>
 
 
         <?php
-        include('../config.php');
-
-
+        include('../../config.php');
 
         function getAddressById($addressId)
         {
@@ -471,7 +485,7 @@
                                 // Display the product details
                             ?>
                                 <tr>
-                                    <td><img src="../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode" style="height:20px; width:100%"></td>
+                                    <td><img src="../../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode" style="height:20px; width:100%"></td>
                                     <td><span><?php echo $product['prod_name']; ?></span></td>
 
                                     <td><span data-prefix>₱</span><span><?php echo $product['prod_price']; ?></span></td>
@@ -506,23 +520,12 @@
                     </div>
                 </aside>
 
-                <form id="cancelForm" action="actions/to-cancelled.php" method="POST">
-                    <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                </form>
 
-                <form action="actions/to-followup.php" method="POST" style="display: inline;">
-                    <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                    <button style="margin-left: 65%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Follow Up</button>
-                </form>
-
-                <button onclick="submitCancelForm()" type="button" name="cancel" class="status">Cancel</button>
-
-                
+                <button onclick="window.print()" class="no-print" style="margin-left:70vw; margin-bottom: 5vw;">Print</button>
 
 
-                <a href="pending.php" style="color:black;">
-                    <button>Back</button>
-                </a>
+                <button onclick="window.history.back()" class="no-print">Back</button>
+
 
         <?php
             } else {
@@ -539,10 +542,10 @@
     </section>
     <script src="../assets/js/nav.js"></script>
     <script>
-                    function submitCancelForm() {
-                        document.getElementById("cancelForm").submit();
-                    }
-                </script>
+  function printPage() {
+    window.print();
+  }
+</script>
 </body>
 
 </html>

@@ -252,7 +252,7 @@
         <button class="action-button">Action</button>
         <div class="more-options">
           <!-- Additional options content goes here -->
-          <a href="pending-view.php?id=' . $orderId . '"><button class="view">View</button></a>
+          <a href="cancelled-view.php?id=' . $orderId . '"><button class="view">View</button></a>
         </div>
       </td>
     </tr>';

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXGG | Pending</title>
+    <title>AXGG | Cancelled</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
     <style>
         * {
@@ -327,7 +327,7 @@
     <section class="home-section">
         <div class="home-content">
             <i class='bx bx-menu'></i>
-            <span class="text">Pending</span>
+            <span class="text">Cancelled orders</span>
         </div>
 
 
@@ -512,13 +512,8 @@
 
                 <form action="actions/to-followup.php" method="POST" style="display: inline;">
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                    <button style="margin-left: 65%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Follow Up</button>
+                    <button style="margin-left: 75%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Follow Up</button>
                 </form>
-
-                <button onclick="submitCancelForm()" type="button" name="cancel" class="status">Cancel</button>
-
-                
-
 
                 <a href="pending.php" style="color:black;">
                     <button>Back</button>
@@ -534,15 +529,8 @@
 
         mysqli_close($conn);
         ?>
-
-
     </section>
     <script src="../assets/js/nav.js"></script>
-    <script>
-                    function submitCancelForm() {
-                        document.getElementById("cancelForm").submit();
-                    }
-                </script>
 </body>
 
 </html>

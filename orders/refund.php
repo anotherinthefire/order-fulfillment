@@ -167,17 +167,6 @@
       <span class="text">Refund Request</span>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
     <?php
     include('../config.php');
 
@@ -264,7 +253,7 @@
             <input type="hidden" name="orderId" value="' . $orderId . '">
             <button type="submit" name="followUp" class="status">FollowUp</button>
           </form>
-          <a href="pending-view.php?id=' . $orderId . '"><button class="view">View</button></a>
+          <a href="refund-view.php?id=' . $orderId . '"><button class="view">View</button></a>
         </div>
       </td>
     </tr>';
