@@ -77,56 +77,56 @@
       <span class="text">Users</span>
     </div>
     <div class="container">
-    <?php
-include('../config.php');
+      <?php
+      include('../config.php');
 
-function getUsers()
-{
-    global $conn;
-    $sql = "SELECT u.*, COUNT(o.ord_id) AS number_of_orders 
+      function getUsers()
+      {
+        global $conn;
+        $sql = "SELECT u.*, COUNT(o.ord_id) AS number_of_orders 
             FROM user u
             LEFT JOIN orders o ON u.user_id = o.user_id
             GROUP BY u.user_id";
-    $result = mysqli_query($conn, $sql);
-    return mysqli_fetch_all($result, MYSQLI_ASSOC);
-}
+        $result = mysqli_query($conn, $sql);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+      }
 
-$users = getUsers();
+      $users = getUsers();
 
-foreach ($users as $user) {
-    $fullname = $user['fullname'];
-    $status = $user['status'];
-    $numberOfOrders = $user['number_of_orders'];
-    $statusLabel = '';
+      foreach ($users as $user) {
+        $fullname = $user['fullname'];
+        $status = $user['status'];
+        $numberOfOrders = $user['number_of_orders'];
+        $statusLabel = '';
 
-    // Set the status label based on the user's status value
-    if ($status == 0) {
-        $statusLabel = 'Unverified';
-    } elseif ($status == 1) {
-        $statusLabel = 'Verified';
-    } elseif ($status == 2) {
-        $statusLabel = 'Banned';
-    }
-?>
+        // Set the status label based on the user's status value
+        if ($status == 0) {
+          $statusLabel = 'Unverified';
+        } elseif ($status == 1) {
+          $statusLabel = 'Verified';
+        } elseif ($status == 2) {
+          $statusLabel = 'Banned';
+        }
+      ?>
 
-<a href="user-view.php">
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
+        <a href="user-view.php">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
                 <p class="title"><?php echo $fullname; ?></p>
                 <p><?php echo $statusLabel; ?></p>
-            </div>
-            <div class="flip-card-back">
+              </div>
+              <div class="flip-card-back">
                 <p class="title">Total Order</p>
                 <p><?php echo $numberOfOrders; ?></p>
+              </div>
             </div>
-        </div>
-    </div>
-</a>
+          </div>
+        </a>
 
-<?php
-}
-?>
+      <?php
+      }
+      ?>
 
     </div>
 

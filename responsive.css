@@ -1,0 +1,111 @@
+/* Responsive CSS Here */
+@media screen and (max-width: 950px) {
+    .nav-img {
+        height: 25px;
+    }
+    .nav-option {
+        gap: 30px;
+    }
+    .nav-option h3 {
+        font-size: 15px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 800px;
+    }
+    
+    }
+    
+    @media screen and (max-width: 490px) {
+    .message {
+        display: none;
+    }
+    .logosec {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .menuicn {
+        height: 25px;
+    }
+    .nav-img {
+        height: 25px;
+    }
+    .nav-option {
+        gap: 25px;
+    }
+    .nav-option h3 {
+        font-size: 12px;
+    }
+    .nav-upper-options {
+        gap: 15px;
+    }
+    .recent-Articles {
+        font-size: 20px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 550px;
+    }
+    }
+    
+    @media screen and (max-width: 400px) {
+    .recent-Articles {
+        font-size: 17px;
+    }
+    .view {
+        width: 60px;
+        font-size: 10px;
+        height: 27px;
+    }
+    .report-header {
+        height: 60px;
+        padding: 10px 10px 5px 10px;
+    }
+    .searchbtn img {
+        height: 20px;
+    }
+    }
+    
+    @media screen and (max-width: 320px) {
+    .recent-Articles {
+        font-size: 12px;
+    }
+    .view {
+        width: 50px;
+        font-size: 8px;
+        height: 27px;
+    }
+    .report-header {
+        height: 60px;
+        padding: 10px 5px 5px 5px;
+    }
+    .t-op {
+        font-size: 12px;
+    }
+    .t-op-nextlvl {
+        font-size: 10px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 300px;
+    }
+    .report-body {
+        padding: 10px;
+    }
+    .label-tag {
+        width: 70px;
+    }
+    .searchbtn {
+        width: 40px;
+    }
+    .searchbar2 input {
+        width: 180px;
+    }
+    }
+    

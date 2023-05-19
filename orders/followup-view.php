@@ -329,18 +329,12 @@
             <i class='bx bx-menu'></i>
             <span class="text">Follwup Order</span>
         </div>
-
-
         <?php
         include('../config.php');
-
-
-
+        //address
         function getAddressById($addressId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the address data
             $sql = "SELECT * FROM address WHERE add_id = $addressId";
             $result = mysqli_query($conn, $sql);
 
@@ -348,16 +342,13 @@
                 $addressData = mysqli_fetch_assoc($result);
                 return $addressData;
             } else {
-                return null; // Return null if address is not found
+                return null; 
             }
         }
-
-
+        //orders details
         function getOrderById($orderId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the order data
             $sql = "SELECT * FROM orders WHERE ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
 
@@ -365,7 +356,7 @@
                 $orderData = mysqli_fetch_assoc($result);
                 return $orderData;
             } else {
-                return null; // Return null if order is not found
+                return null;
             }
         }
 
@@ -381,7 +372,6 @@
             WHERE op.ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
 
-
             if ($result && mysqli_num_rows($result) > 0) {
                 $orderedProducts = array();
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -389,20 +379,17 @@
                 }
                 return $orderedProducts;
             } else {
-                return array(); // Return an empty array if no ordered products found
+                return array();
             }
         }
 
         if (isset($_GET['id'])) {
             $orderId = $_GET['id'];
-
-            // Call the getOrderById function to retrieve the order data
             $orderData = getOrderById($orderId);
             $orderedProducts = getOrderedProducts($orderId);
 
             if ($orderData) {
                 $addressId = $orderData['add_id'];
-                // Call the getAddressById function to retrieve the address data
                 $addressData = getAddressById($addressId);
 
         ?>
@@ -511,9 +498,9 @@
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
                 </form>
 
-                <form action="actions/to-followup.php" method="POST" style="display: inline;">
+                <form action="actions/to-confirm.php" method="POST" style="display: inline;">
                     <input type="hidden" name="orderId" value="<?php echo $orderId; ?>">
-                    <button style="margin-left: 60%; margin-bottom: 50px;" type="submit" name="followUp" class="status">Confirm</button>
+                    <button style="margin-left: 60%; margin-bottom: 50px;" type="submit" name="confirm" class="status">Confirm</button>
                 </form>
 
                 <button id="noteButton" type="button" name="note" class="status" onclick="toggleNoteEditMode()">Notes</button>

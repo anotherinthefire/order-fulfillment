@@ -175,12 +175,103 @@
       }
     }
 
-  
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      margin: 30vh auto;
+      margin-left: 30%;
+      margin-right: auto;
+      background-color: #fff;
+      width: 300px;
+      padding: 20px;
+    }
+
+    .subscribe {
+      position: relative;
+      height: 10rem;
+      width: 40vw;
+      padding: 20px;
+      background-color: transparent;
+      /* Remove white background */
+      border-radius: 4px;
+      color: #333;
+      box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .subscribe:after {
+      position: absolute;
+      content: "";
+      right: -10px;
+      bottom: 18px;
+      width: 0;
+      height: 0;
+      border-left: 0px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #1a044e;
+      background-color: white;
+    }
+
+    .subscribe p {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      line-height: 50px;
+    }
+
+    .subscribe input {
+      position: absolute;
+      bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #d4d4d4;
+      padding: 10px;
+      width: 82%;
+      background: transparent;
+      transition: all .25s ease;
+    }
+
+    .subscribe input:focus {
+      outline: none;
+      border-bottom: 1px solid #0d095e;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+    }
+
+    .subscribe .submit-btn {
+      position: absolute;
+      border-radius: 30px;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      background-color: #1E1E1E;
+      color: #FFF;
+      padding: 12px 25px;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      right: -10px;
+      bottom: -20px;
+      cursor: pointer;
+      transition: all .25s ease;
+      box-shadow: -5px 6px 20px 0px rgba(26, 26, 26, 0.4);
+    }
+
+    .subscribe .submit-btn:hover {
+      background-color: #07013d;
+    }
   </style>
 </head>
 
 <body>
-  <?php include('../includes/sidenav.php') ?>
+  <?php include '../includes/sidenav.php' ?>
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu'></i>
@@ -191,72 +282,121 @@
 
     <div class="ag-format-container">
 
+      <div class="ag-courses_item" style="height:10vh;">
+        <a href="#" class="ag-courses-item_link" onclick="showModal()">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            add category
+          </div>
+        </a>
+      </div>
+
+      <div class="modal" id="myModal">
+        <div class="modal-content" style="background-color:transparent;">
+          <div class="subscribe" style="background-color:white;">
+            <p>CATEGORY</p>
+            <input id="categoryInput" placeholder="what's new" class="subscribe-input" name="category" type="text">
+            <br>
+            <div class="submit-btn" onclick="addCategory()">ADD</div>
+          </div>
+        </div>
+      </div>
 
 
-    <div class="ag-courses_item" style="height:10vh;">
-              <a href="#" class="ag-courses-item_link">
-                  <div class="ag-courses-item_bg"></div>
-                  <div class="ag-courses-item_title">
-                      add category
-                  </div>
-              </a>
-            </div>
+
       <div class="ag-courses_box">
+      <?php
+function displayCategories()
+{
+  include '../config.php';
+  $query = "SELECT c.category_id, c.category, SUM(s.stock) AS total_stock
+            FROM category c
+            LEFT JOIN stock s ON c.category_id = s.category_id
+            GROUP BY c.category_id";
+  $result = mysqli_query($conn, $query);
 
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $category = $row['category'];
+      $categoryId = $row['category_id'];
+      $totalStock = $row['total_stock'];
 
-      
-        <?php
-        function displayCategories()
-        {
-          include('../config.php');
-          $query = "SELECT c.category_id, c.category, SUM(s.stock) AS total_stock 
-                    FROM category c 
-                    LEFT JOIN stock s ON c.category_id = s.category_id 
-                    GROUP BY c.category_id";
-          $result = mysqli_query($conn, $query);
+      echo '
+    <div class="ag-courses_item">
+      <a href="category-view.php?category_id=' . $categoryId . '" class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+              ' . $category . '
+          </div>
+          <div class="ag-courses-item_date-box">
+              Total Product<br>Stock:
+              <span class="ag-courses-item_date">
+                  ' . $totalStock . '
+              </span>
+          </div>
+      </a>
+    </div>';
+    }
+  } else {
+    echo 'No categories found.';
+  }
 
-          if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-              $category = $row['category'];
-              $categoryId = $row['category_id'];
-              $totalStock = $row['total_stock'];
+  // Close the database connection
+  mysqli_close($conn);
+}
 
-              echo '
-            <div class="ag-courses_item">
-              <a href="#" class="ag-courses-item_link">
-                  <div class="ag-courses-item_bg"></div>
-                  <div class="ag-courses-item_title">
-                      ' . $category . '
-                  </div>
-                  <div class="ag-courses-item_date-box">
-                      Total Product<br>Stock:
-                      <span class="ag-courses-item_date">
-                          ' . $totalStock . '
-                      </span>
-                  </div>
-              </a>
-            </div>';
-            }
-          } else {
-            echo 'No categories found.';
-          }
+// Call the function to display the categories and stock totals
+displayCategories();
+?>
 
-          // Close the database connection
-          mysqli_close($conn);
-        }
-
-        // Call the function to display the categories and stock totals
-        displayCategories();
-        ?>
 
 
       </div>
     </div>
-
-
-
   </section>
   <script src="../assets/js/nav.js"></script>
+  <script>
+    function showModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+
+      // Attach event listener to close the modal when clicked outside
+      window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+
+    function addCategory() {
+      var categoryInput = document.getElementById('categoryInput');
+      var category = categoryInput.value.trim();
+
+      if (category !== '') {
+        // Send an AJAX request to the PHP script
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'actions/add-category.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Handle the response from the PHP script
+            var response = xhr.responseText;
+            if (response === 'success') {
+              alert('Category added successfully');
+              // Reload the page or perform any other action
+              location.reload();
+            } else if (response === 'exists') {
+              alert('Category already exists');
+            } else {
+              alert('Error adding category');
+            }
+          }
+        };
+        xhr.send('category=' + encodeURIComponent(category));
+      }
+    }
+  </script>
+
 </body>
 
 </html>
