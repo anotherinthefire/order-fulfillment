@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include("../includes/check-pages.php");
+checkLoginStatus();
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -78,49 +82,50 @@
     </div>
 
     <div class="container">
-    <?php
-    include('../config.php');
+      <?php
+      include('../config.php');
 
-    function getAdminInfo($conn) {
+      function getAdminInfo($conn)
+      {
         $sql = "SELECT * FROM admin";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $fullname = $row['name'];
-                $status = $row['user_level'];
-                $email = $row['email'];
-                $contact = $row['contact'];
+          while ($row = mysqli_fetch_assoc($result)) {
+            $fullname = $row['name'];
+            $status = $row['user_level'];
+            $email = $row['email'];
+            $contact = $row['contact'];
 
-                if ($status == 'Admin') {
-                    $statusLabel = 'Admin';
-                } else {
-                    $statusLabel = 'User';
-                }
-
-                echo '<a href="user-view.php">';
-                echo '<div class="flip-card">';
-                echo '<div class="flip-card-inner">';
-                echo '<div class="flip-card-front">';
-                echo '<p class="title">' . $fullname . '</p>';
-                echo '<p>' . $statusLabel . '</p>';
-                echo '</div>';
-                echo '<div class="flip-card-back">';
-                echo '<p class="title"> contact </p>';
-                echo '<p>' . $contact . '</p>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</a>';
+            if ($status == 'Admin') {
+              $statusLabel = 'Admin';
+            } else {
+              $statusLabel = 'User';
             }
-        } else {
-            echo "No admin records found.";
-        }
-    }
 
-    // Call the function to display admin info
-    getAdminInfo($conn);
-    ?>
-</div>
+            echo '<a href="user-view.php">';
+            echo '<div class="flip-card">';
+            echo '<div class="flip-card-inner">';
+            echo '<div class="flip-card-front">';
+            echo '<p class="title">' . $fullname . '</p>';
+            echo '<p>' . $statusLabel . '</p>';
+            echo '</div>';
+            echo '<div class="flip-card-back">';
+            echo '<p class="title"> contact </p>';
+            echo '<p>' . $contact . '</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+          }
+        } else {
+          echo "No admin records found.";
+        }
+      }
+
+      // Call the function to display admin info
+      getAdminInfo($conn);
+      ?>
+    </div>
 
 
 

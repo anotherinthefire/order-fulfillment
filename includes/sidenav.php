@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+include('../config.php');
+?>
 <!-- Coding by CodingNepal | www.codingnepalweb.com -->
 <html lang="en" dir="ltr">
 
@@ -429,16 +432,19 @@
         </ul>
       </li>
       <li>
-        <div class="profile-details">
-          <div class="profile-content">
-            <img src="../includes/img/logo.png" alt="profileImg">
-          </div>
-          <div class="name-job">
-            <div class="profile_name">Ron Ultra</div>
-            <div class="job">Admin</div>
-          </div>
-          <i class='bx bx-log-out'></i>
-        </div>
+        
+      <div class="profile-details">
+  <div class="profile-content">
+    <img src="../includes/img/logo.png" alt="profileImg">
+  </div>
+  <div class="name-job">
+    <div class="profile_name"><?php echo $_SESSION["name"]; ?></div>
+    <div class="job"><?php echo $_SESSION["user_level"]; ?></div>
+  </div>
+  <a href="../includes/logout.php" class="logout-link"><i class='bx bx-log-out'></i></a>
+</div>
+
+
       </li>
     </ul>
   </div>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- condition session when logged in -->
+<?php
+include("../includes/check-pages.php");
+checkLoginStatus();
+?>
 
 <head>
     <meta charset="UTF-8">

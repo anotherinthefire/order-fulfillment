@@ -323,7 +323,7 @@
 </style>
 
 <body>
-<div class="sidebar close">
+  <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-codepen'></i>
       <span class="logo_name">AXGG</span>
@@ -423,10 +423,10 @@
             <img src="includes/img/logo.png" alt="profileImg">
           </div>
           <div class="name-job">
-            <div class="profile_name">Ron Ultra</div>
-            <div class="job">Admin</div>
+            <div class="profile_name"><?php echo $_SESSION["name"]; ?></div>
+            <div class="job"><?php echo $_SESSION["user_level"]; ?></div>
           </div>
-          <i class='bx bx-log-out'></i>
+          <a href="includes/logout.php" class="logout-link"><i class='bx bx-log-out'></i></a>
         </div>
       </li>
     </ul>
@@ -438,7 +438,7 @@
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {
       arrow[i].addEventListener("click", (e) => {
-        let arrowParent = e.target.parentElement.parentElement; 
+        let arrowParent = e.target.parentElement.parentElement;
         arrowParent.classList.toggle("showMenu");
       });
     }
