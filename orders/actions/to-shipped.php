@@ -8,7 +8,6 @@ if (isset($_POST['ship'])) {
     $pickupImgResult = mysqli_query($conn, $pickupImgQuery);
 
     if (mysqli_num_rows($pickupImgResult) > 0) {
-        // pickup_img exists, update the order status
         $sql = "UPDATE orders SET status = 5 WHERE ord_id = $orderId";
         $result = mysqli_query($conn, $sql);
 
@@ -18,7 +17,6 @@ if (isset($_POST['ship'])) {
             echo '<script>alert("Failed to update order status."); window.location.href = "../pickup.php";</script>';
         }
     } else {
-        // pickup_img does not exist, do not update the order status
         echo '<script>alert("pickup_img does not exist. Cannot update order status."); window.location.href = "../pickup.php";</script>';
     }
 }

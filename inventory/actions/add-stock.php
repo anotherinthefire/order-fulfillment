@@ -2,14 +2,12 @@
 include('../../config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Get the submitted values
   $category_id = $_POST["category_id"];
   $prod_id = $_POST["prod_id"];
   $color_id = $_POST["color_id"];
   $size_id = $_POST["size_id"];
   $quantity = $_POST["quantity"];
 
-  // Check if the stock already exists
   $checkQuery = "SELECT * FROM stock 
                  WHERE category_id = '$category_id' 
                  AND prod_id = '$prod_id' 
@@ -19,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $checkResult = $conn->query($checkQuery);
 
   if ($checkResult->num_rows > 0) {
-    // Stock already exists, update the quantity
     $row = $checkResult->fetch_assoc();
     $existingQuantity = $row["stock"];
     $newQuantity = $existingQuantity + $quantity;
@@ -34,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo '<script>alert("Error updating stock: ' . $conn->error . '"); window.location.href = "../stock.php";</script>';
     }
   } else {
-    // Stock doesn't exist, insert new stock
+    
     $insertQuery = "INSERT INTO stock (category_id, prod_id, color_id, size_id, stock, barcode)
     VALUES ('$category_id', '$prod_id', '$color_id', '$size_id', '$quantity', '')";
 
@@ -45,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       require '../../vendor/autoload.php';
 
-      // Generate and save the barcode image
       $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
       file_put_contents($barcode, $generatorPNG->getBarcode("$stockId", $generatorPNG::TYPE_CODE_128, 3, 50));
 
@@ -60,7 +56,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 }
-
-// Close the database connection
 $conn->close();
-?>

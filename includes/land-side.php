@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding by CodingNepal | www.codingnepalweb.com -->
 <html lang="en" dir="ltr">
 
 <head>
@@ -328,9 +327,10 @@
       <i class='bx bxl-codepen'></i>
       <span class="logo_name">AXGG</span>
     </div>
+
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="">
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">Dashboard</span>
         </a>
@@ -359,7 +359,7 @@
 
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="orders/orders.php">
             <i class='bx bx-collection'></i>
             <span class="link_name">Orders</span>
           </a>
@@ -388,6 +388,7 @@
           <li><a class="link_name" href="pages/messages.php">Messages</a></li>
         </ul>
       </li>
+
       <li>
         <a href="pages/user.php">
           <i class='bx bx-user'></i>
@@ -409,15 +410,6 @@
       </li>
 
       <li>
-        <a href="pages/settings.php">
-          <i class='bx bx-cog'></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="pages/setting.phpx">Setting</a></li>
-        </ul>
-      </li>
-      <li>
         <div class="profile-details">
           <div class="profile-content">
             <img src="includes/img/logo.png" alt="profileImg">
@@ -431,9 +423,6 @@
       </li>
     </ul>
   </div>
-
-
-
   <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {

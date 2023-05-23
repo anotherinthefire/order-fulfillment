@@ -8,16 +8,16 @@
     <title>AXGG | Paid</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- latest bootstrap cdn -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- latest bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-  <!-- font-awesome cdn -->
-  <script src="https://kit.fontawesome.com/3481525a72.js" crossorigin="anonymous"></script>
+    <!-- font-awesome cdn -->
+    <script src="https://kit.fontawesome.com/3481525a72.js" crossorigin="anonymous"></script>
 
-  <!-- jquery datatable css cdn -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <!-- jquery datatable css cdn -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <style>
         * {
             border: 0;
@@ -331,13 +331,11 @@
             box-shadow: 0.05em 0.05em;
         }
 
-        
         @media print {
-        .no-print {
-            display: none;
+            .no-print {
+                display: none;
+            }
         }
-    }
-        
     </style>
 </head>
 
@@ -349,12 +347,9 @@
 
         <?php
         include('../../config.php');
-
         function getAddressById($addressId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the address data
             $sql = "SELECT * FROM address WHERE add_id = $addressId";
             $result = mysqli_query($conn, $sql);
 
@@ -362,7 +357,7 @@
                 $addressData = mysqli_fetch_assoc($result);
                 return $addressData;
             } else {
-                return null; // Return null if address is not found
+                return null; 
             }
         }
 
@@ -370,8 +365,6 @@
         function getOrderById($orderId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the order data
             $sql = "SELECT * FROM orders WHERE ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
 
@@ -379,7 +372,7 @@
                 $orderData = mysqli_fetch_assoc($result);
                 return $orderData;
             } else {
-                return null; // Return null if order is not found
+                return null;
             }
         }
 
@@ -395,7 +388,6 @@
             WHERE op.ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
 
-
             if ($result && mysqli_num_rows($result) > 0) {
                 $orderedProducts = array();
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -403,20 +395,17 @@
                 }
                 return $orderedProducts;
             } else {
-                return array(); // Return an empty array if no ordered products found
+                return array();
             }
         }
 
         if (isset($_GET['id'])) {
             $orderId = $_GET['id'];
-
-            // Call the getOrderById function to retrieve the order data
             $orderData = getOrderById($orderId);
             $orderedProducts = getOrderedProducts($orderId);
 
             if ($orderData) {
                 $addressId = $orderData['add_id'];
-                // Call the getAddressById function to retrieve the address data
                 $addressData = getAddressById($addressId);
 
         ?>
@@ -474,15 +463,14 @@
                                 <th><span>Total</span></th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <?php
-                            $totalAmount = 0; // Initialize a variable to store the total amount
-
+                            $totalAmount = 0; 
+                            
                             foreach ($orderedProducts as $product) {
-                                $productTotal = $product['prod_price'] * $product['quantity']; // Compute the total for each product
-                                $totalAmount += $productTotal; // Add the product total to the overall total
-
-                                // Display the product details
+                                $productTotal = $product['prod_price'] * $product['quantity']; 
+                                $totalAmount += $productTotal;
                             ?>
                                 <tr>
                                     <td><img src="../../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode" style="height:20px; width:100%"></td>
@@ -496,7 +484,6 @@
                             }
                             ?>
 
-                            <!-- <a class="add">+</a> -->
                             <table class="balance">
                                 <tr>
                                     <th><span>Order Total</span></th>
@@ -542,10 +529,10 @@
     </section>
     <script src="../assets/js/nav.js"></script>
     <script>
-  function printPage() {
-    window.print();
-  }
-</script>
+        function printPage() {
+            window.print();
+        }
+    </script>
 </body>
 
 </html>

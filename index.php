@@ -1,11 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php
 include("includes/check.php");
 checkLoginStatus();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<!-- condition session when logged in -->
 
 <head>
 	<meta charset="UTF-8">
@@ -13,6 +11,8 @@ checkLoginStatus();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>AXGG | Dashboard </title>
 	<link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/responsive.css">
 </head>
 
 <body>
@@ -22,15 +22,11 @@ checkLoginStatus();
 			<i class='bx bx-menu'></i>
 			<span class="text">Order and Fulfillment Management System</span>
 		</div>
-
-
 		<div class="main">
-
 			<div class="box-container">
-
 				<?php
 				include('config.php');
-				// Fetch the total number of orders from the database
+				//fetch orders
 				$totalOrdersQuery = "SELECT COUNT(*) AS total_orders FROM orders";
 				$totalOrdersResult = $conn->query($totalOrdersQuery);
 
@@ -46,11 +42,8 @@ checkLoginStatus();
 					echo '<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png" alt="Views">';
 					echo '</div>';
 				}
-				?>
 
-
-				<?php
-				// Fetch the total stock quantity from the database
+				// Fetch the total stock quantity
 				$totalStockQuery = "SELECT SUM(stock) AS total_stock FROM stock";
 				$totalStockResult = $conn->query($totalStockQuery);
 
@@ -66,11 +59,8 @@ checkLoginStatus();
 					echo '<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png" alt="likes">';
 					echo '</div>';
 				}
-				?>
 
-
-				<?php
-				// Fetch the total count of messages from the database
+				// Fetch the total message
 				$totalMessagesQuery = "SELECT COUNT(*) AS total_messages FROM messages";
 				$totalMessagesResult = $conn->query($totalMessagesQuery);
 
@@ -86,11 +76,8 @@ checkLoginStatus();
 					echo '<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png" alt="comments">';
 					echo '</div>';
 				}
-				?>
 
-
-				<?php
-				// Fetch the total sales of stock from the database
+				// Fetch the total sales of stock 
 				$totalSalesQuery = "SELECT SUM(sales) AS total_sales FROM stock";
 				$totalSalesResult = $conn->query($totalSalesQuery);
 
@@ -107,15 +94,11 @@ checkLoginStatus();
 					echo '</div>';
 				}
 				?>
-
-
-
 			</div>
-
 			<div class="report-container">
 				<div class="report-header">
 					<h1 class="recent-Articles">Recent Orders</h1>
-					<button class="view">View All</button>
+					<a href="orders/orders.php"><button class="view">View All</button></a>
 				</div>
 
 				<div class="report-body">
@@ -127,17 +110,14 @@ checkLoginStatus();
 					</div>
 
 					<div class="items">
-
-
 						<?php
-
-						// Fetch order details from the database
+						// Fetch order details
 						$orderQuery = "SELECT * FROM orders";
 						$orderResult = $conn->query($orderQuery);
 
 						if ($orderResult->num_rows > 0) {
 							while ($row = $orderResult->fetch_assoc()) {
-								$fullname = $row["fullname"];
+								$fullname = $row["full_name"]; //join usernam
 								$status = $row["status"];
 								$total = $row["total"];
 								$ord_date = $row["ord_date"];
@@ -151,18 +131,13 @@ checkLoginStatus();
 							}
 						}
 						?>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
-
-		<script src="./index.js"></script>
-
+		<script src="assets/js/index.js"></script>
 	</section>
 	<script src="assets/js/nav.js"></script>
 </body>
-
 </html>

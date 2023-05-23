@@ -11,74 +11,7 @@ checkLoginStatus();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AXGG | Dashboard </title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
-    <style>
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .card {
-            --font-color: #323232;
-            --bg-color: #e0e0e0;
-            width: 250px;
-            height: 350px;
-            border-radius: 20px;
-            background: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-            transition: .4s;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: scale(1.02);
-        }
-
-
-
-        .card__descr-wrapper {
-            padding: 15px;
-            display: grid;
-        }
-
-        .card__title {
-            color: var(--font-color);
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: 900;
-            font-size: 16px;
-        }
-
-        .card__descr {
-            color: var(--font-color);
-        }
-
-        .svg {
-            width: 25px;
-            height: 25px;
-            transform: translateY(25%);
-            fill: var(--font-color);
-        }
-
-        .card__links {
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-self: flex-end;
-        }
-
-        .card__links .link {
-            color: var(--font-color);
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-        }
-
-        .card__links .link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/color-view.css?<?php time();?>">
 </head>
 
 <body>
@@ -89,14 +22,11 @@ checkLoginStatus();
             <span class="text">Products</span>
         </div>
 
-
-
         <div class="container">
             <?php
             if (isset($_GET['color_id'])) {
               $colorid = $_GET['color_id'];
             
-              // Validate and sanitize the color ID input
               $colorid = filter_var($colorid, FILTER_SANITIZE_NUMBER_INT);
               if (!filter_var($colorid, FILTER_VALIDATE_INT)) {
                 echo "Invalid color ID";
@@ -114,7 +44,7 @@ checkLoginStatus();
 
                 $result = mysqli_query($conn, $sql);
 
-                $displayedProducts = array(); // Track displayed products
+                $displayedProducts = array(); 
 
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -125,15 +55,12 @@ checkLoginStatus();
                         $color = $row['color'];
                         $stock = $row['stock'];
 
-                        // Check if the product has already been displayed
                         if (in_array($productName, $displayedProducts)) {
-                            continue; // Skip displaying the repeated product
+                            continue;
                         }
 
-                        // Add the product to the displayed products array
                         $displayedProducts[] = $productName;
 
-                        // Use the variables in the HTML code to display the product details
                         echo '<div class="card" style="margin-bottom:30px">';
                         echo '<div class="card__descr-wrapper">';
                         echo '<img src="../../product_images/' . $productImage . '" style="width: 100%;">';
@@ -148,11 +75,9 @@ checkLoginStatus();
                         echo '</div>';
                     }
                 } else {
-                    // Product not found
                     echo "No products found for the specified color";
                 }
             } else {
-                // Color ID parameter is missing
                 echo "Color ID parameter is missing";
             }
             ?>

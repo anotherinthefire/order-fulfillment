@@ -4,6 +4,7 @@
 include("../includes/check-pages.php");
 checkLoginStatus();
 ?>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@ checkLoginStatus();
 </head>
 
 <body>
-<?php include('../includes/sidenav.php') ?>
+  <?php include('../includes/sidenav.php') ?>
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu'></i>

@@ -10,67 +10,9 @@ checkLoginStatus();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXGG | Admin</title>
-  <style>
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .flip-card {
-      background-color: transparent;
-      width: 190px;
-      height: 20vh;
-      perspective: 1000px;
-      font-family: sans-serif;
-    }
-
-    .title {
-      font-size: 1.5em;
-      font-weight: 900;
-      text-align: center;
-      margin: 0;
-    }
-
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-      box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border: 1px solid #5876CE;
-      border-radius: 1rem;
-    }
-
-    .flip-card-front {
-      background: #404759;
-      color: white;
-    }
-
-    .flip-card-back {
-      background: #5876CE;
-      color: white;
-      transform: rotateY(180deg);
-    }
-  </style>
+  <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/admin.css">
 </head>
 
 <body>
@@ -126,9 +68,6 @@ checkLoginStatus();
       getAdminInfo($conn);
       ?>
     </div>
-
-
-
   </section>
   <script src="../assets/js/nav.js"></script>
 </body>

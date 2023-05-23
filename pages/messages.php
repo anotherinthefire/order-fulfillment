@@ -4,86 +4,15 @@
 include("../includes/check-pages.php");
 checkLoginStatus();
 ?>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXGG | Messages</title>
-  <style>
-    /* this card is inspired form this - https://georgefrancis.dev/ */
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .card {
-      --border-radius: 0.75rem;
-      --primary-color: #7257fa;
-      --secondary-color: #3c3852;
-      width: 210px;
-      font-family: "Arial";
-      padding: 1rem;
-      cursor: pointer;
-      border-radius: var(--border-radius);
-      background: #f1f1f3;
-      box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
-      position: relative;
-      margin: 10px;
-    }
-
-    .card>*+* {
-      margin-top: 1.1em;
-    }
-
-    .card .card__content {
-      color: var(--secondary-color);
-      font-size: 0.86rem;
-    }
-
-    .card .card__title {
-      padding: 0;
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
-
-    .card .card__date {
-      color: #6e6b80;
-      font-size: 0.8rem;
-    }
-
-    .card .card__arrow {
-      position: absolute;
-      background: var(--primary-color);
-      padding: 0.4rem;
-      border-top-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-      bottom: 0;
-      right: 0;
-      transition: 0.2s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card svg {
-      transition: 0.2s;
-    }
-
-    /* hover */
-    .card:hover .card__title {
-      color: var(--primary-color);
-      text-decoration: underline;
-    }
-
-    .card:hover .card__arrow {
-      background: #111;
-    }
-
-    .card:hover .card__arrow svg {
-      transform: translateX(3px);
-    }
-  </style>
+  <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/messages.css">
 </head>
 
 <body>
@@ -107,7 +36,7 @@ checkLoginStatus();
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
       }
 
-      $messages = getMessages();  
+      $messages = getMessages();
       foreach ($messages as $message) {
         $subject = $message['subject'];
         $content = $message['message'];
@@ -130,12 +59,7 @@ checkLoginStatus();
       <?php
       }
       ?>
-
-
     </div>
-
-
-
   </section>
   <script src="../assets/js/nav.js"></script>
 </body>

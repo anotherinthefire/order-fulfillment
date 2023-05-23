@@ -4,325 +4,14 @@
 include("../includes/check-pages.php");
 checkLoginStatus();
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AXGG | Cancelled</title>
     <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
-    <style>
-        * {
-            border: 0;
-            box-sizing: content-box;
-            color: inherit;
-            font-family: inherit;
-            font-size: inherit;
-            font-style: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            vertical-align: top
-        }
-
-        h1 {
-            font: bold 100% sans-serif;
-            letter-spacing: .5em;
-            text-align: center;
-            text-transform: uppercase
-        }
-
-        table {
-            font-size: 75%;
-            table-layout: fixed;
-            width: 100%
-        }
-
-        table {
-            border-collapse: separate;
-            border-spacing: 2px
-        }
-
-        td,
-        th {
-            border-width: 1px;
-            padding: .5em;
-            position: relative;
-            text-align: left
-        }
-
-        td,
-        th {
-            border-radius: .25em;
-            border-style: solid
-        }
-
-        th {
-            background: #eee;
-            border-color: #bbb
-        }
-
-        td {
-            border-color: #ddd
-        }
-
-        header {
-            margin: 0 0 3em
-        }
-
-        header:after {
-            clear: both;
-            content: "";
-            display: table
-        }
-
-        header h1 {
-            background: #000;
-            border-radius: .25em;
-            color: #fff;
-            margin: 0 0 1em;
-            padding: .5em 0
-        }
-
-        header address {
-            float: left;
-            font-size: 75%;
-            font-style: normal;
-            line-height: 1.25;
-            margin: 0 1em 1em 0
-        }
-
-        header address p {
-            margin: 0 0 .25em
-        }
-
-        header img,
-        header span {
-            display: block;
-            float: right
-        }
-
-        header span {
-            margin: 0 0 1em 1em;
-            max-height: 25%;
-            max-width: 60%;
-            position: relative
-        }
-
-        header img {
-            max-height: 100%;
-            max-width: 100%
-        }
-
-        header input {
-            cursor: pointer;
-            height: 100%;
-            left: 0;
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            width: 100%
-        }
-
-        article,
-        article address,
-        table.inventory,
-        table.meta {
-            margin: 0 0 3em
-        }
-
-        article:after {
-            clear: both;
-            content: "";
-            display: table
-        }
-
-        article h1 {
-            clip: rect(0 0 0 0);
-            position: absolute
-        }
-
-        article address {
-            float: left;
-            font-size: 125%;
-            font-weight: 700
-        }
-
-        table.balance,
-        table.meta {
-            float: right;
-            width: 36%
-        }
-
-        table.balance:after,
-        table.meta:after {
-            clear: both;
-            content: "";
-            display: table
-        }
-
-        table.meta th {
-            width: 40%
-        }
-
-        table.meta td {
-            width: 60%
-        }
-
-        table.inventory {
-            clear: both;
-            width: 100%
-        }
-
-        table.inventory th {
-            font-weight: 700;
-            text-align: center
-        }
-
-        table.inventory td:nth-child(1) {
-            width: 26%
-        }
-
-        table.inventory td:nth-child(2) {
-            width: 38%
-        }
-
-        table.inventory td:nth-child(3) {
-            text-align: right;
-            width: 12%
-        }
-
-        table.inventory td:nth-child(4) {
-            text-align: right;
-            width: 12%
-        }
-
-        table.inventory td:nth-child(5) {
-            text-align: right;
-            width: 12%
-        }
-
-        table.balance td,
-        table.balance th {
-            width: 50%
-        }
-
-        table.balance td {
-            text-align: right
-        }
-
-        aside h1 {
-            border: none;
-            border-width: 0 0 1px;
-            margin: 0 0 1em
-        }
-
-        aside h1 {
-            border-color: #999;
-            border-bottom-style: solid
-        }
-
-        .add,
-        .cut {
-            border-width: 1px;
-            display: block;
-            font-size: .8rem;
-            padding: .25em .5em;
-            float: left;
-            text-align: center;
-            width: .6em
-        }
-
-        .add,
-        .cut {
-            background: #9af;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-            background-image: -moz-linear-gradient(#00adee 5%, #0078a5 100%);
-            background-image: -webkit-linear-gradient(#00adee 5%, #0078a5 100%);
-            border-radius: .5em;
-            border-color: #0076a3;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 700;
-            text-shadow: 0 -1px 2px rgba(0, 0, 0, .333)
-        }
-
-        .add {
-            margin: -2.5em 0 0
-        }
-
-        .add:hover {
-            background: #00adee
-        }
-
-        .cut {
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            left: -1.5em
-        }
-
-        .cut {
-            -webkit-transition: opacity .1s ease-in
-        }
-
-        tr:hover .cut {
-            opacity: 1
-        }
-
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact
-            }
-
-            html {
-                background: 0 0;
-                padding: 0
-            }
-
-            body {
-                box-shadow: none;
-                margin: 0
-            }
-
-            span:empty {
-                display: none
-            }
-
-            .add,
-            .cut {
-                display: none
-            }
-        }
-
-        @page {
-            margin: 0
-        }
-
-
-        button {
-            background: #FBCA1F;
-            font-family: inherit;
-            padding: 0.6em 1.3em;
-            font-weight: 900;
-            font-size: 18px;
-            border: 3px solid black;
-            border-radius: 0.4em;
-            box-shadow: 0.1em 0.1em;
-        }
-
-        button:hover {
-            transform: translate(-0.05em, -0.05em);
-            box-shadow: 0.15em 0.15em;
-        }
-
-        button:active {
-            transform: translate(0.05em, 0.05em);
-            box-shadow: 0.05em 0.05em;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/cancelled-view.css">
 </head>
 
 <body>
@@ -333,17 +22,11 @@ checkLoginStatus();
             <span class="text">Cancelled orders</span>
         </div>
 
-
         <?php
         include('../config.php');
-
-
-
         function getAddressById($addressId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the address data
             $sql = "SELECT * FROM address WHERE add_id = $addressId";
             $result = mysqli_query($conn, $sql);
 
@@ -351,16 +34,13 @@ checkLoginStatus();
                 $addressData = mysqli_fetch_assoc($result);
                 return $addressData;
             } else {
-                return null; // Return null if address is not found
+                return null;
             }
         }
-
 
         function getOrderById($orderId)
         {
             global $conn;
-
-            // Prepare and execute the query to fetch the order data
             $sql = "SELECT * FROM orders WHERE ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
 
@@ -368,22 +48,19 @@ checkLoginStatus();
                 $orderData = mysqli_fetch_assoc($result);
                 return $orderData;
             } else {
-                return null; // Return null if order is not found
+                return null; 
             }
         }
-
 
         function getOrderedProducts($orderId)
         {
             global $conn;
-
             $sql = "SELECT op.*, p.prod_name, p.prod_price, s.barcode
             FROM ordered_products op
             INNER JOIN stock s ON op.stock_id = s.stock_id
             INNER JOIN products p ON s.prod_id = p.prod_id
             WHERE op.ord_id = $orderId";
             $result = mysqli_query($conn, $sql);
-
 
             if ($result && mysqli_num_rows($result) > 0) {
                 $orderedProducts = array();
@@ -392,20 +69,17 @@ checkLoginStatus();
                 }
                 return $orderedProducts;
             } else {
-                return array(); // Return an empty array if no ordered products found
+                return array();
             }
         }
 
         if (isset($_GET['id'])) {
             $orderId = $_GET['id'];
-
-            // Call the getOrderById function to retrieve the order data
             $orderData = getOrderById($orderId);
             $orderedProducts = getOrderedProducts($orderId);
 
             if ($orderData) {
                 $addressId = $orderData['add_id'];
-                // Call the getAddressById function to retrieve the address data
                 $addressData = getAddressById($addressId);
 
         ?>
@@ -465,13 +139,11 @@ checkLoginStatus();
                         </thead>
                         <tbody>
                             <?php
-                            $totalAmount = 0; // Initialize a variable to store the total amount
+                            $totalAmount = 0; 
 
                             foreach ($orderedProducts as $product) {
-                                $productTotal = $product['prod_price'] * $product['quantity']; // Compute the total for each product
-                                $totalAmount += $productTotal; // Add the product total to the overall total
-
-                                // Display the product details
+                                $productTotal = $product['prod_price'] * $product['quantity'];
+                                $totalAmount += $productTotal;
                             ?>
                                 <tr>
                                     <td><img src="../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode" style="height:20px; width:100%"></td>
@@ -485,7 +157,6 @@ checkLoginStatus();
                             }
                             ?>
 
-                            <!-- <a class="add">+</a> -->
                             <table class="balance">
                                 <tr>
                                     <th><span>Order Total</span></th>

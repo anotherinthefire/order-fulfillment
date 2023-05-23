@@ -5,7 +5,6 @@ if (isset($_POST['remarks']) && isset($_POST['orderId'])) {
     $remarks = $_POST['remarks'];
     $orderId = $_POST['orderId'];
 
-    // Update the remarks in the proof table
     $sql = "UPDATE proof SET remarks = '$remarks' WHERE ord_id = $orderId";
     $result = mysqli_query($conn, $sql);
 
@@ -16,6 +15,5 @@ if (isset($_POST['remarks']) && isset($_POST['orderId'])) {
     }
 }
 
-// Close the database connection
 mysqli_close($conn);
 ?>

@@ -8,7 +8,6 @@ if (isset($_POST['refund'])) {
     $proofResult = mysqli_query($conn, $proofQuery);
 
     if (mysqli_num_rows($proofResult) > 0) {
-        // Remarks, remarks_img, and remarks_date exist, update the order status
         $sql = "UPDATE orders SET status = 7 WHERE ord_id = $orderId";
         $result = mysqli_query($conn, $sql);
 

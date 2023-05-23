@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<?php 
-include('../config.php');
+<?php
+include '../config.php';
 ?>
-<!-- Coding by CodingNepal | www.codingnepalweb.com -->
 <html lang="en" dir="ltr">
 
 <head>
@@ -25,7 +24,6 @@ include('../config.php');
 <style>
   /* Google Fonts Import Link */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 
   * {
     margin: 0;
@@ -336,12 +334,14 @@ include('../config.php');
 </style>
 
 <body>
-  <?php include('../config.php'); ?>
+  <?php include '../config.php'; ?>
   <div class="sidebar close">
+
     <div class="logo-details">
       <i class='bx bxl-codepen'></i>
       <span class="logo_name">AXGG</span>
     </div>
+
     <ul class="nav-links">
       <li>
         <a href="../">
@@ -373,7 +373,7 @@ include('../config.php');
 
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="../orders/orders.php">
             <i class='bx bx-collection'></i>
             <span class="link_name">Orders</span>
           </a>
@@ -423,29 +423,18 @@ include('../config.php');
       </li>
 
       <li>
-        <a href="../pages/settings.php">
-          <i class='bx bx-cog'></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../pages/setting.phpx">Setting</a></li>
-        </ul>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="../includes/img/logo.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name"><?php echo $_SESSION["name"]; ?></div>
+            <div class="job"><?php echo $_SESSION["user_level"]; ?></div>
+          </div>
+          <a href="../includes/logout.php" class="logout-link"><i class='bx bx-log-out'></i></a>
+        </div>
       </li>
-      <li>
-        
-      <div class="profile-details">
-  <div class="profile-content">
-    <img src="../includes/img/logo.png" alt="profileImg">
-  </div>
-  <div class="name-job">
-    <div class="profile_name"><?php echo $_SESSION["name"]; ?></div>
-    <div class="job"><?php echo $_SESSION["user_level"]; ?></div>
-  </div>
-  <a href="../includes/logout.php" class="logout-link"><i class='bx bx-log-out'></i></a>
-</div>
 
-
-      </li>
     </ul>
   </div>
 
@@ -457,7 +446,6 @@ include('../config.php');
         arrowParent.classList.toggle("showMenu");
       });
     }
-
   </script>
 </body>
 

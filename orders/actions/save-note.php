@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $orderId = $_POST['orderId'];
         $note = $_POST['note'];
 
-        // Update the note in the database
         $sql = "UPDATE orders SET note = '$note' WHERE ord_id = $orderId";
         $result = mysqli_query($conn, $sql);
 

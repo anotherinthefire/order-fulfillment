@@ -8,7 +8,6 @@ if (isset($_POST['completed'])) {
     $proofResult = mysqli_query($conn, $proofQuery);
 
     if (mysqli_num_rows($proofResult) > 0) {
-        // Proof exists, update the order status
         $sql = "UPDATE orders SET status = 6 WHERE ord_id = $orderId";
         $result = mysqli_query($conn, $sql);
 
@@ -18,7 +17,6 @@ if (isset($_POST['completed'])) {
             echo '<script>alert("Failed to update order status."); window.location.href = "../shipped.php";</script>';
         }
     } else {
-        // Proof does not exist, do not update the order status
         echo '<script>alert("Proof does not exist. Cannot update order status."); window.location.href = "../shipped.php";</script>';
     }
 }
