@@ -5,10 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login with QR Code</title>
+    <style>
+        .scanner{
+            width: 60vw;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <div id="qr-reader" style="width: 60vw"></div>
-
+    <div id="qr-reader" class="scanner">
+        
+    </div>
+    <a href="./login.php"><< back to login form</a>
     <!-- include the libraries -->
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script src="https://unpkg.com/jquery"></script>
@@ -30,7 +38,7 @@
 
                 // Send the scanned QR code to the PHP script for login
                 $.ajax({
-                    url: 'login.php',
+                    url: 'login-scan.php',
                     type: 'POST',
                     data: { qrCode: decodedText },
                     success: function(response) {
@@ -39,7 +47,7 @@
                             // Display a success message
                             alert("Login successful.");
                             // Redirect to the admin dashboard upon successful login
-                            window.location.href = './stock.php';
+                            window.location.href = '../';
                         } else if (response === 'error') {
                             // Display an error message if login fails
                             alert("Invalid username or password. Please try again.");

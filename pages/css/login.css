@@ -96,7 +96,8 @@ body {
     text-transform: uppercase;
     font-size: 10px;
     letter-spacing: 2px;
-    margin-bottom: 1em;
+    margin-right: 1vw;
+    margin-left:1vw;
 }
 
 .enter:hover {

@@ -16,9 +16,9 @@ include('../../config.php');
      $hashedPassword = $row["password"];
  
      if (password_verify($passwordd, $hashedPassword)) {
-       $_SESSION["loggedin"] = true;
-        $_SESSION["name"] = $admin["name"];
-$_SESSION["user_level"] = $admin["user_level"];
+      $_SESSION["loggedin"] = true;
+      $_SESSION["name"] = $admin["name"];
+      $_SESSION["user_level"] = $admin["user_level"];
        header("location: ../../");
        exit;
      } else {
