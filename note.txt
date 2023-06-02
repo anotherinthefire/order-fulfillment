@@ -8,3 +8,8 @@ place the ordering website folder inside the master folder
 
 if you add stock in the system then it will show in the website
 if you place order in website then the system will receive it
+
+
+if the barcode generator does not work then try to delete vendor folder, composer.json and composer.lock then reinstall the barcode generator
+create new terminal in you folder then paste this command:
+composer require picqer/php-barcode-generator
