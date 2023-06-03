@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="./css/qrgen.css">
+</head>
+<body>
+    <script type="text/javascript">
+        function genQR() {
+            var gapi = "https://chart.googleapis.com/chart?chf=bg,s,65432100&cht=qr&chs=";
+            var myimg = document.getElementById("img");
+            var mytext = document.getElementById("qrtext").value;
+            var mysize = 500; // Set default size to 500px
+
+            if (mytext !== "") {
+                myimg.src = gapi + mysize + "x" + mysize + "&chl=" + mytext;
+            } else {
+                alert("Please Enter Text");
+            }
+        }
+    </script>
+    <div class="grid">
+        <h2 align="center">Qr Code Generator</h2>
+        <center>
+            <img src="" id="img">
+        </center>
+
+        <textarea placeholder="Enter Your Text" id="qrtext"></textarea>
+        <br><br>
+        <input type="submit" value="Generate" onclick="genQR()">
+    </div>
+</body>
+</html>
