@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <!-- Boxiocns CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <!-- font-awesome cdn -->
+  <script src="https://kit.fontawesome.com/2187376129.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
@@ -324,7 +326,7 @@
 <body>
   <div class="sidebar close">
     <div class="logo-details">
-      <i class='bx bxl-codepen'></i>
+    <i class="fa-sharp fa-solid fa-dragon"></i>
       <span class="logo_name">AXGG</span>
     </div>
 

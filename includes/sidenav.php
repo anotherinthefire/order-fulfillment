@@ -16,7 +16,7 @@ include '../config.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
   <!-- font-awesome cdn -->
-  <script src="https://kit.fontawesome.com/3481525a72.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/2187376129.js" crossorigin="anonymous"></script>
 
   <!-- jquery datatable css cdn -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
@@ -338,7 +338,7 @@ include '../config.php';
   <div class="sidebar close">
 
     <div class="logo-details">
-      <i class='bx bxl-codepen'></i>
+    <i class="fa-sharp fa-solid fa-dragon"></i>
       <span class="logo_name">AXGG</span>
     </div>
 
