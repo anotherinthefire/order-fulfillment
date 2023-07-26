@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AXGG | Paid</title>
-    <link rel="shortcut icon" href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
+    <link rel="shortcut icon"
+        href="https://i.ibb.co/dfD3s4M/278104398-126694786613134-4231769107383237629-n-removebg-preview.png" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- latest bootstrap cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- font-awesome cdn -->
     <script src="https://kit.fontawesome.com/3481525a72.js" crossorigin="anonymous"></script>
@@ -346,7 +348,7 @@
 
 
         <?php
-        include('../../config.php');
+        include '../../config.php';
         function getAddressById($addressId)
         {
             global $conn;
@@ -357,10 +359,9 @@
                 $addressData = mysqli_fetch_assoc($result);
                 return $addressData;
             } else {
-                return null; 
+                return null;
             }
         }
-
 
         function getOrderById($orderId)
         {
@@ -375,7 +376,6 @@
                 return null;
             }
         }
-
 
         function getOrderedProducts($orderId)
         {
@@ -408,15 +408,20 @@
                 $addressId = $orderData['add_id'];
                 $addressData = getAddressById($addressId);
 
-        ?>
+                ?>
                 <header style="margin-left:5%; margin-right: 5%;">
-                    <h1>Order#<?php echo $orderData['ord_id'] ?></h1>
+                    <h1>Order#
+                        <?php echo $orderData['ord_id'] ?>
+                    </h1>
                     <addres>
-                        <p><b>Name: </b><?php echo $orderData['full_name'] ?></p>
+                        <p><b>Name: </b>
+                            <?php echo $orderData['full_name'] ?>
+                        </p>
                         <?php
                         if ($addressData) {
-                        ?>
-                            <p><b>Address: </b><?php echo $addressData['room'] ?>
+                            ?>
+                            <p><b>Address: </b>
+                                <?php echo $addressData['room'] ?>
                                 <?php echo $addressData['company'] ?>
                                 <?php echo $addressData['house_no'] ?>
                                 <?php echo $addressData['street'] ?>,
@@ -424,12 +429,15 @@
                                 <?php echo $addressData['city'] ?>, <br>
                                 <?php echo $addressData['province'] ?>,
                                 <?php echo $addressData['postal_code'] ?>,
-                                <?php echo $addressData['region'] ?></p>
+                                <?php echo $addressData['region'] ?>
+                            </p>
                         <?php } else {
                             echo 'Address not found.';
                         } ?>
 
-                        <p><b>Contact: </b><?php echo $orderData['contact'] ?></p>
+                        <p><b>Contact: </b>
+                            <?php echo $orderData['contact'] ?>
+                        </p>
                     </addres>
 
                 </header>
@@ -441,15 +449,21 @@
                     <table class="meta">
                         <tr>
                             <th><span>Order#</span></th>
-                            <td><span><?php echo $orderData['ord_id'] ?></span></td>
+                            <td><span>
+                                    <?php echo $orderData['ord_id'] ?>
+                                </span></td>
                         </tr>
                         <tr>
                             <th><span>Date and Time</span></th>
-                            <td><span><?php echo $orderData['ord_date'] ?></span></td>
+                            <td><span>
+                                    <?php echo $orderData['ord_date'] ?>
+                                </span></td>
                         </tr>
                         <tr>
                             <th><span>Amount Due</span></th>
-                            <td><span id="prefix">₱</span><span><?php echo $orderData['total'] ?></span></td>
+                            <td><span id="prefix">₱</span><span>
+                                    <?php echo $orderData['total'] ?>
+                                </span></td>
                         </tr>
                     </table>
 
@@ -466,36 +480,51 @@
 
                         <tbody>
                             <?php
-                            $totalAmount = 0; 
-                            
-                            foreach ($orderedProducts as $product) {
-                                $productTotal = $product['prod_price'] * $product['quantity']; 
-                                $totalAmount += $productTotal;
-                            ?>
-                                <tr>
-                                    <td><img src="../../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode" style="height:20px; width:100%"></td>
-                                    <td><span><?php echo $product['prod_name']; ?></span></td>
+                            $totalAmount = 0;
 
-                                    <td><span data-prefix>₱</span><span><?php echo $product['prod_price']; ?></span></td>
-                                    <td><span>x<?php echo $product['quantity']; ?></span></td>
-                                    <td><span data-prefix>₱</span><span><?php echo $productTotal; ?></span></td>
+                            foreach ($orderedProducts as $product) {
+                                $productTotal = $product['prod_price'] * $product['quantity'];
+                                $totalAmount += $productTotal;
+                                ?>
+                                <tr>
+                                    <td><img src="../../../barcodes/<?php echo $product['barcode']; ?>" alt="Barcode"
+                                            style="height:20px; width:100%"></td>
+                                    <td><span>
+                                            <?php echo $product['prod_name']; ?>
+                                        </span></td>
+
+                                    <td><span data-prefix>₱</span><span>
+                                            <?php echo $product['prod_price']; ?>
+                                        </span></td>
+                                    <td><span>x
+                                            <?php echo $product['quantity']; ?>
+                                        </span></td>
+                                    <td><span data-prefix>₱</span><span>
+                                            <?php echo $productTotal; ?>
+                                        </span></td>
                                 </tr>
-                            <?php
+                                <?php
                             }
                             ?>
 
                             <table class="balance">
                                 <tr>
                                     <th><span>Order Total</span></th>
-                                    <td><span data-prefix>₱</span><span><?php echo $totalAmount; ?></span></td>
+                                    <td><span data-prefix>₱</span><span>
+                                            <?php echo $totalAmount; ?>
+                                        </span></td>
                                 </tr>
                                 <tr>
                                     <th><span>Shipping Fee</span></th>
-                                    <td><span data-prefix>₱</span><span><?php echo $orderData['shipping']; ?></span></td>
+                                    <td><span data-prefix>₱</span><span>
+                                            <?php echo $orderData['shipping']; ?>
+                                        </span></td>
                                 </tr>
                                 <tr>
                                     <th><span>Total</span></th>
-                                    <td><span data-prefix>₱</span><span><?php echo $totalAmount + $orderData['shipping']; ?></span></td>
+                                    <td><span data-prefix>₱</span><span>
+                                            <?php echo $totalAmount + $orderData['shipping']; ?>
+                                        </span></td>
                                 </tr>
                             </table>
 
@@ -503,7 +532,9 @@
                 <aside style="margin-left:5%; margin-right: 5%; padding-bottom:5%; text-align: center;">
                     <h1><span>Customer Notes</span></h1>
                     <div>
-                        <p><?php echo $orderData['note'] ?></p>
+                        <p>
+                            <?php echo $orderData['note'] ?>
+                        </p>
                     </div>
                 </aside>
 
@@ -514,7 +545,7 @@
                 <button onclick="window.history.back()" class="no-print">Back</button>
 
 
-        <?php
+                <?php
             } else {
                 echo 'Order not found.';
             }
